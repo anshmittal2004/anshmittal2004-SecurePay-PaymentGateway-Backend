@@ -7,6 +7,10 @@ from database import init_db, log_transaction, get_all_transactions
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React frontend
 
+@app.route('/')
+def home():
+    return {"message": "Backend is working ✅"}
+
 @app.route('/api/authorize', methods=['POST'])
 def authorize_payment():
     data = request.json
