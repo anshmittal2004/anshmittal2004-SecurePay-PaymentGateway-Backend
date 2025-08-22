@@ -1,11 +1,14 @@
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import hashlib
 from database import init_db, log_transaction, get_all_transactions
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for React frontend
+# Update CORS with specific origins
+CORS(app, origins=[
+    'http://localhost:5173', 
+    'https://secure-pay-payment-gateway-frontend.vercel.app'
+])
 
 @app.route('/api/authorize', methods=['POST'])
 def authorize_payment():
@@ -37,4 +40,4 @@ def get_transactions():
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)  # Your backend runs on port 5000
