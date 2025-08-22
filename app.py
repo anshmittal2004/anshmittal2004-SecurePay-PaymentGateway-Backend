@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app, origins=[
     'http://localhost:5173', 
     'https://secure-pay-payment-gateway-frontend.vercel.app'
-])
+], supports_credentials=True)
 
 @app.route('/api/authorize', methods=['POST'])
 def authorize_payment():
